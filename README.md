@@ -1,128 +1,288 @@
 # RememberMe AI
 
-**Your Personal Memory Assistant**
+### Your Personal Memory Assistant
 
 > Remember less. Live more.
 
-RememberMe AI is a calm, conversational reminder assistant. You type or speak plain sentences such as "Remind me tomorrow at 10 AM to wash clothes," and it creates, lists, completes, moves, and cancels your reminders.
+RememberMe AI is a voice-enabled, conversational reminder assistant that helps users create, view, complete, reschedule, edit, and cancel reminders using natural-language commands.
 
-Built for the **Amazon Developer Hackathon 2026, Alexa+ track**, as a **simulated Alexa+-style web experience**.
+Instead of navigating multiple forms and menus, users can type or speak commands such as:
 
-## Important notes
+* "Remind me tomorrow at 10 AM to wash clothes."
+* "Show my upcoming reminders."
+* "Move my grocery reminder to tomorrow at 5 PM."
+* "Mark my assignment as done."
 
-- **This is not an official Amazon or Alexa integration.** RememberMe AI simulates a conversational experience inside a web page. It does not use any Amazon or Alexa API, skill, device, or account, and it is not affiliated with or endorsed by Amazon.
-- **This is not an AI model.** Messages are handled by a rule-based parser that understands a fixed set of phrasings. It does not generate free-form answers. When it does not understand a message, it says so and suggests what it can do.
-- **This is not a medical or safety device.** Do not rely on it for medication, emergencies, or any situation where a missed reminder could cause harm.
+The assistant processes supported commands, asks follow-up questions when information is missing or ambiguous, and displays the results in a simple web interface.
 
-## The problem
+**Built for the Amazon Developer Hackathon 2026 — Alexa+ track, as a simulated Alexa+-style web experience.**
 
-Busy people, students, and older adults often forget small everyday tasks. Many reminder apps need forms, menus, and several taps to set a single reminder. A conversational option lets people say what they need in the words they would naturally use.
+---
 
-## Target users
+## Project Information
 
-- Students balancing classes, assignments, and deadlines
-- Busy people who lose track of errands
-- Older adults who want a simple, readable list
-- Anyone who occasionally forgets everyday tasks
+| Detail            | Information                                                              |
+| ----------------- | ------------------------------------------------------------------------ |
+| Project name      | RememberMe AI                                                            |
+| Developer         | Sneha Prajapat                                                           |
+| Platform          | Web application                                                          |
+| Frontend          | HTML, CSS, JavaScript                                                    |
+| Data storage      | Browser localStorage                                                     |
+| Voice features    | Browser Web Speech APIs, where supported                                 |
+| Backend           | None                                                                     |
+| External AI API   | None                                                                     |
+| Deployment model  | Static website                                                           |
+| GitHub repository | [Rememberme-ai](https://github.com/snehaprajapat6677-prog/Rememberme-ai) |
+| License           | MIT                                                                      |
 
-## Solution overview
+## Important Disclaimer
 
-You type or speak a request. The assistant works out what you meant, asks a short question when a detail is missing or unclear, and then makes the change. Your reminders appear in a list with live statistics, filters, and buttons. Reminders are stored only in your own browser.
+RememberMe AI is an independent project created as a simulated conversational assistant experience.
 
-## Main features
+* It is **not an official Amazon or Alexa product**.
+* It does not connect to an Alexa device, Alexa account, or official Alexa API.
+* It does not implement an Amazon Alexa Skill or an MCP server.
+* It does not use a generative AI model or external AI API.
+* Its natural-language processing is based on predefined JavaScript rules and supported command patterns.
+* It is not intended for medication reminders, emergencies, or other safety-critical situations.
 
-- **Create reminders from everyday phrases**, including "in 30 minutes," "in 2 hours," "tomorrow at 10 AM," "next Monday at noon," and "25 October at 6 PM."
-- **List reminders** as all, today, upcoming, pending, or completed, and ask for a short summary.
-- **Manage reminders** by marking them done, reopening them, editing them, moving them to a new time, or deleting them. You can do this from chat or from the buttons on each card.
-- **Confirm before deleting.** Deleting from chat asks you to reply yes or no. Deleting from a card asks you to confirm in a browser dialog.
-- **Ask before guessing.** If a time is missing, if AM or PM is unclear, if a title is missing, or if several reminders match, the assistant asks one short question.
-- **Handle past times safely.** If you ask for a time that has already passed, the assistant explains this and offers the same time on the next day.
-- **Show live statistics** for active, due today, and completed reminders. These are calculated from your data every time.
-- **Show due-time alerts** as a banner and a chat message.
-- **Offer optional browser notifications**, turned on only when you click a button. They appear only while the page is open.
-- **Accept voice input** through your browser's speech recognition, where supported. Recognized speech goes into the text box so you can check it before sending.
-- **Offer optional spoken replies.** They are off by default and never read out alerts.
-- **Support accessibility needs** with keyboard navigation, labelled controls, screen reader announcements, reduced-motion support, and large touch targets.
-- **Keep your reminders after a refresh.** Damaged saved data is backed up, and the app starts safely with the reminders it can read.
+The name RememberMe AI describes the project concept. It does not imply that the application currently uses an AI model.
 
-## Things you can say
+---
 
-- Remind me tomorrow at 10 AM to wash clothes.
-- Remind me in 30 minutes to take a break.
-- Remind me to call Mom at 6 PM.
-- Remind me next Monday at noon to renew my library book.
-- Remind me tonight at 9 to stretch.
-- What do I need to do today?
-- Show my upcoming reminders.
-- Show my pending reminders.
-- Mark washing clothes as done.
-- Move my grocery reminder to tomorrow at 5 PM.
-- Cancel my reminder to call Mom.
-- What have I completed?
-- Summary
+## The Problem
 
-Start commands such as "mark," "complete," "cancel," "delete," "move," and "reschedule" with the action word. "Remind me" can appear anywhere in the sentence.
+People frequently forget everyday responsibilities, including assignments, errands, personal tasks, and upcoming activities.
 
-## Technical architecture
+Traditional reminder interfaces may require users to open forms, enter dates, choose times, and navigate multiple controls for a simple task.
 
-RememberMe AI is a static website made of plain HTML, CSS, and vanilla JavaScript. It has no build step, no framework, no backend, and no external dependencies. Anyone can run it with a local web server or host it on any static host.
+RememberMe AI explores a more conversational approach: users express what they need in ordinary language, and the assistant attempts to turn that request into a manageable reminder.
 
-### Files
+## The Solution
 
-| File | Purpose |
-|---|---|
-| `index.html` | Page structure, labelled controls, the chat panel, the edit dialog, and the footer |
-| `style.css` | Colours, spacing, layout, voice orb animations, responsive rules, and reduced-motion support |
-| `script.js` | Intent parser, reminder tools, date handling, storage, rendering, voice, alerts, and start-up |
-| `package.json` | Project details and the `npm start` script. It has no dependencies. |
-| `README.md` | This document |
-| `LICENSE` | MIT licence |
-| `.gitignore` | Files Git should ignore, such as `node_modules/`, `.vercel/`, and system files |
+RememberMe AI provides a lightweight, browser-based reminder experience with text interaction, optional voice input, spoken replies, and reminder management.
 
-### How a message flows
+The assistant separates command interpretation from reminder operations. When a request is unclear, it can ask a follow-up question rather than immediately performing an uncertain action.
 
+Reminders are stored locally in the user's browser, without an account or server-side database.
+
+## Target Users
+
+* Students managing assignments and study sessions.
+* Busy individuals organizing daily tasks and errands.
+* People who prefer speaking instead of typing.
+* Users who want a simple, readable reminder interface.
+
+## Key Features
+
+### 1. Natural-Language Reminder Creation
+
+Create reminders using supported date, time, and task phrases.
+
+Examples:
+
+* "Remind me in 30 minutes to take a break."
+* "Remind me tomorrow at 10 AM to wash clothes."
+* "Remind me to call Mom at 6 PM."
+* "Remind me next Monday at noon to renew my library book."
+
+The parser recognizes a defined set of English-language patterns. It is not an unrestricted conversational AI system.
+
+### 2. Reminder Management
+
+Users can:
+
+* Create reminders.
+* View all reminders.
+* Filter reminders by status or date.
+* Mark pending reminders as completed.
+* Reopen completed reminders.
+* Edit reminder details.
+* Reschedule pending reminders.
+* Delete reminders.
+* View a summary of reminder activity.
+
+### 3. Conversational Clarification
+
+When a request lacks necessary information or matches multiple reminders, the assistant can ask a follow-up question.
+
+For example, if several reminders have similar titles, the user may need to specify which reminder they mean.
+
+This helps reduce unintended actions caused by ambiguous commands.
+
+### 4. Confirmation Before Deletion
+
+Chat-based deletion requires confirmation before removing a reminder.
+
+The interface also provides a confirmation step when deleting through a reminder card.
+
+### 5. Date and Time Handling
+
+The parser supports a defined set of expressions, including:
+
+* Relative times, such as "in 30 minutes."
+* Relative days, such as "tomorrow."
+* Weekdays and supported calendar-date formats.
+* Clock times, such as "10 AM" and "5:30 PM."
+* Noon and midnight.
+* Ambiguous clock times that require AM/PM clarification.
+
+When a supported time has already passed, the assistant can explain the issue and offer an alternative.
+
+### 6. Voice Input
+
+The application can use browser speech recognition to convert spoken commands into text.
+
+Recognized speech appears in the input field so the user can review it before sending.
+
+Voice recognition depends on browser support, microphone permission, network conditions, and the browser's speech service.
+
+### 7. Optional Spoken Replies
+
+Users can enable text-to-speech for supported chat responses.
+
+Spoken replies are optional and disabled by default. The application does not intentionally read reminder alerts aloud.
+
+### 8. Reminder Statistics
+
+The interface displays statistics for reminder activity, such as pending reminders, reminders due today, and completed reminders.
+
+### 9. Due-Time Alerts
+
+When the page is running, the application checks reminder due times and displays an in-page alert.
+
+Optional browser notifications can also be enabled where supported and permitted.
+
+### 10. Local Data Persistence
+
+Reminders are saved in browser localStorage and normally remain available after refreshing the page.
+
+The application includes storage-recovery handling for certain damaged saved-data scenarios.
+
+### 11. Accessibility and Responsive Layout
+
+The interface includes accessibility-oriented features such as labelled controls, keyboard navigation, visible focus indicators, screen-reader announcements, and reduced-motion support.
+
+The layout is designed to adapt to desktop, tablet, and mobile screen sizes.
+
+---
+
+## Example Commands
+
+Try these supported command patterns:
+
+| Action                          | Example                                        |
+| ------------------------------- | ---------------------------------------------- |
+| Create a reminder               | `Remind me tomorrow at 10 AM to wash clothes`  |
+| Create a relative-time reminder | `Remind me in 30 minutes to take a break`      |
+| List today's tasks              | `What do I need to do today?`                  |
+| View upcoming reminders         | `Show my upcoming reminders`                   |
+| View pending reminders          | `Show my pending reminders`                    |
+| Complete a reminder             | `Mark my assignment as done`                   |
+| Reschedule a reminder           | `Move my grocery reminder to tomorrow at 5 PM` |
+| Cancel a reminder               | `Cancel my reminder to call Mom`               |
+| View completed tasks            | `What have I completed?`                       |
+| Request a summary               | `Summary`                                      |
+
+**Note:** Supported wording is rule-based. Commands that fall outside the parser's supported patterns may not be understood.
+
+---
+
+## Technology Stack
+
+| Technology           | Purpose                                                               |
+| -------------------- | --------------------------------------------------------------------- |
+| HTML5                | Page structure and semantic elements                                  |
+| CSS3                 | Styling, responsive layout, animations, and visual states             |
+| Vanilla JavaScript   | Command parsing, reminder operations, storage, and interface behavior |
+| Browser localStorage | Local reminder persistence                                            |
+| Web Speech API       | Optional speech recognition and spoken replies, where supported       |
+| Node.js and npm      | Local development server                                              |
+| Git and GitHub       | Source-code version control                                           |
+| Vercel               | Static hosting, if using the deployed version                         |
+
+The application does not currently require a backend, external database, framework, or AI API.
+
+---
+
+## Technical Architecture
+
+RememberMe AI is a static web application built with HTML, CSS, and vanilla JavaScript.
+
+Its main processing flow is:
+
+```text
+User types or speaks a command
+              |
+              v
+     Input normalization
+              |
+              v
+       Intent parsing
+              |
+              v
+   Follow-up or validation
+              |
+              v
+      Reminder operation
+              |
+              v
+      Local data storage
+              |
+              v
+    Interface re-rendering
+              |
+              v
+       Assistant reply
 ```
-You type or speak
-    → parseUserIntent()    works out what you meant (reads only, changes nothing)
-    → executeIntent()      runs the matching tool, or asks a follow-up question
-    → reminder tools       check the inputs, change the data, and save to this browser
-    → renderAll()          redraws the statistics, the list, and the due banner
-    → chat reply           shows the message the tool returned
+
+The architecture separates command interpretation, reminder operations, storage, and interface rendering to make the application easier to maintain and debug.
+
+### Project Files
+
+| File           | Purpose                                                                     |
+| -------------- | --------------------------------------------------------------------------- |
+| `index.html`   | Main page structure and interface elements                                  |
+| `style.css`    | Visual design, responsive layout, and animations                            |
+| `script.js`    | Command parsing, reminder operations, storage, alerts, voice, and rendering |
+| `package.json` | Project metadata and local development script                               |
+| `README.md`    | Project documentation                                                       |
+| `LICENSE`      | MIT License                                                                 |
+| `.gitignore`   | Excludes selected local and generated files from Git                        |
+
+### Command Processing
+
+The application processes supported commands through a rule-based parser.
+
+At a high level, it:
+
+1. Normalizes the user's input.
+2. Checks whether the assistant is waiting for a follow-up answer.
+3. Identifies a supported command pattern.
+4. Extracts the reminder title, date, and time.
+5. Validates the parsed information.
+6. Asks for clarification when necessary.
+7. Calls the appropriate reminder operation.
+8. Updates the stored data and interface.
+9. Displays the resulting message.
+
+The implementation uses JavaScript rules rather than a trained language model.
+
+---
+
+## Data Storage
+
+Reminders are stored in the browser's localStorage under the key:
+
+```text
+rememberme-ai.reminders.v1
 ```
 
-The parser decides what you meant. The tools do the work. The interface only displays the results. Each layer can be tested and changed separately.
-
-### Sections of `script.js`
-
-| Section | What it contains |
-|---|---|
-| 1. Constants | Storage keys, word lists, and the patterns used to recognise phrases |
-| 2. Application state | The reminders, any open question, and storage status |
-| 3. Date, time, and text helpers | Local day handling, formatting, and safe text cleanup |
-| 4. Storage with recovery | Loads and saves reminders, and repairs or backs up damaged data |
-| 5. Result helpers | Builds the success and failure messages that tools return |
-| 6. Reminder tools | Create, complete, reopen, delete, reschedule, list, and summarise |
-| 7. Date and time parsing | Turns phrases such as "tomorrow at 10 AM" into exact times |
-| 8. Title cleanup | Removes time words so only the task remains |
-| 9. Intent parser | Chooses the command, or matches a reply to an open question |
-| 10. UI settings and state | Interface state such as the filter, voice status, and alert history |
-| 11. Small helpers | Greetings, element lookup, and speech text cleanup |
-| 12. Status, chat, and toasts | Orb state, the status line, chat messages, and short notices |
-| 13. Dispatcher | Connects the parser to the tools and produces each reply |
-| 14. Rendering | Builds the statistics, filters, list cards, and due banner from data |
-| 15. List clicks and edit dialog | One click handler for all cards, plus the edit form |
-| 16. Due-time alerts | Banner, chat alerts, and browser notifications |
-| 17. Spoken replies | Optional text-to-speech for chat replies |
-| 18. Voice input | Microphone control and speech recognition |
-| 19. Event wiring and start-up | Connects every control and starts the app |
-
-### Reminder data
-
-Reminders are stored in `localStorage` under the key `rememberme-ai.reminders.v1`. Each reminder looks like this:
+A reminder record contains fields such as:
 
 ```json
 {
-  "id": "3f0c9e2a-6b1d-4d7e-9a55-2c8f1b7e4d10",
+  "id": "example-reminder-id",
   "title": "Wash clothes",
   "dueAt": "2026-10-22T04:30:00.000Z",
   "status": "pending",
@@ -132,208 +292,199 @@ Reminders are stored in `localStorage` under the key `rememberme-ai.reminders.v1
 }
 ```
 
-Times are stored in UTC, using the ISO format, so they stay accurate. They are shown in your device's local time zone. The stored file is `{ "version": 1, "reminders": [ ... ] }`.
+This is an illustrative example, not an actual reminder stored in the repository.
 
-## How intent parsing works
+Dates are represented as ISO timestamps. The interface displays times using the device's local time zone.
 
-The parser uses rules, not statistics. It works in this order:
+### Storage Limitations
 
-1. **Clean the text.** Extra spaces are removed and the message is limited to 300 characters.
-2. **Check for an open question.** If the assistant asked you something, such as "Do you mean 5 AM or 5 PM?", your reply is treated as an answer to that question. If your reply is clearly a new command, such as "Show my reminders," the question is dropped and the command runs instead.
-3. **Check for a new command.** The parser checks for help, delete, complete, move, create, summary, and list phrases, in that order. Action words must be at the start of the message. "Remind me" and similar phrases can appear anywhere.
-4. **Extract the details.** Dates and times are removed from the sentence one at a time. What remains becomes the reminder title after cleanup.
-5. **Validate the result.** Titles must not be empty and must be under 120 characters. Times must be in the future. Impossible dates, such as 31 February, are rejected.
-6. **Ask when unsure.** If something is missing or unclear, the parser returns a question instead of making a guess.
+* Reminders are stored in the current browser profile.
+* Data is not synchronized between devices.
+* There is no user account or cloud database.
+* Clearing browser site data may remove saved reminders.
+* Browser localStorage is not encrypted.
 
-### Time expressions the parser understands
+---
 
-- **Relative times:** "in 30 minutes," "in 2 hours," "in half an hour," "in 3 days"
-- **Days:** "today," "tonight," "tomorrow," a weekday such as "Friday," "next Friday," "25 October," or "October 25" (with an optional year)
-- **Clock times:** "10 AM," "5:30 pm," "noon," "midnight," and 24-hour times such as "17:00"
-- **Ambiguous times:** "at 5" with no AM or PM. The assistant asks which one you mean. "Tonight at 9" is read as 9 PM.
-- **Past times:** The assistant explains that the time has passed and offers the next day.
-- **Missing times:** "Tomorrow" with no time triggers a question asking for a time.
+## Installation and Local Development
 
-### Reminder matching
+### Prerequisites
 
-When you refer to an existing reminder by name, such as "cancel my reminder to call Mom," the parser searches your reminders:
+* Node.js and npm.
+* A modern browser, preferably Chrome or Edge for voice-related features.
+* Git, if you want to clone the repository.
 
-- An exact title match wins.
-- Otherwise, every meaningful word in your phrase must match the start of a word in a title. For example, "grocery" matches "groceries."
-- If exactly one reminder matches, the tool acts on it.
-- If several match, the assistant lists them and asks you to use more words.
-- If none match, the assistant says so and suggests a different phrase.
+### 1. Clone the repository
 
-## How the reminder tools work
+Open a terminal and run:
 
-Each tool checks its inputs, changes the data only if the checks pass, saves the result, and returns a message. The message describes what actually happened. If saving to this browser fails, the message says so.
-
-- **Create:** Adds a pending reminder with a future time.
-- **Complete:** Marks a pending reminder as completed and records when.
-- **Reopen:** Returns a completed reminder to pending.
-- **Edit:** Changes the title, date, and time together through the edit dialog. Only pending reminders can be edited.
-- **Reschedule:** Moves a pending reminder to a new future time.
-- **Delete:** Removes a reminder. Chat deletes ask for confirmation first.
-- **List and summary:** Read the data and format it for display.
-
-An overdue reminder is still pending but past its time. It appears in the Today list and is marked "Overdue." Completed reminders are never counted as overdue.
-
-## Alerts and notifications
-
-- The app checks due times every 10 seconds while the page is open. A reminder may therefore appear up to about 10 seconds after its time.
-- When a reminder comes due, the app shows a banner and a chat message. These always appear.
-- A browser notification appears only if you have turned on alerts and the reminder came due after you opened the page.
-- Reminders that were already overdue when you opened the page appear as "Still pending from earlier" in chat. They do not produce a browser notification.
-- Each reminder alerts once. Changing its time allows it to alert again.
-- The app asks for notification permission only when you click "Turn on alerts." It never asks when the page loads.
-- If you block notifications, the app keeps working and shows reminders on the page.
-
-**Limits:** Alerts work only while the page is open. If you close the tab or browser, nothing fires. If the computer sleeps, the page may pause, and reminders appear when the page runs again. Many mobile browsers allow notifications only through a service worker, which this version does not include. On those browsers, reminders still appear on the page.
-
-## Voice input and spoken replies
-
-- **Voice input** uses the browser's Web Speech API. It is available in Chrome and Edge and is most reliable there. Support varies between browsers and versions. If your browser does not support it, the microphone button is disabled and a message explains why.
-- **Permission:** The microphone starts only after you click the microphone button. The button shows when listening is active, and the orb shows a listening animation. The app never records in the background.
-- **Review before sending:** Recognized speech appears in the text box. Nothing is sent until you press Send.
-- **Secure context:** Browsers generally allow speech recognition only on HTTPS or on `localhost`. Vercel provides HTTPS, so the public site works. Opening `index.html` by double-clicking it may behave differently, so use `npm start`.
-- **Accuracy:** Background noise, accents, and microphone quality affect recognition.
-- **Spoken replies** are off by default. Turn them on with the "Spoken replies" button. They read replies to the messages you send. They never read alerts aloud. The voices available depend on your device.
-
-**Privacy of voice input:** When you use the microphone, your browser's speech service processes the audio. In Chrome and Edge, this generally means the audio is sent over the internet to the browser maker's speech servers. RememberMe AI does not store or send your reminders, but voice audio is handled by the browser.
-
-## Privacy
-
-- **Where data lives:** Reminders are kept in `localStorage` in the browser you are using, on that device. There is no account, no sync, and no server copy.
-- **No transmission by the app:** The app does not send reminder data anywhere. It has no analytics and no third-party scripts. It loads no external fonts or images.
-- **Not encrypted:** Browser local storage is not encrypted. Anyone who can use your unlocked computer and browser profile could read it.
-- **Data is device-specific:** Another browser or device will not see your reminders. Clearing site data, using a private window, or uninstalling the browser removes them.
-- **Logs:** When an unexpected error occurs, the console records only the error type, not your reminder text.
-- **Hosting:** Vercel hosts the files. Like any web host, it may keep standard request logs. Your reminder content is not part of those requests.
-- **Advice:** Do not enter sensitive information such as health details, passwords, bank or card numbers, or identification numbers.
-
-## Accessibility
-
-- Semantic HTML with landmarks (`header`, `main`, `footer`), headings, and a skip link.
-- Every control has a visible or accessible label. The microphone button announces whether it is on or off.
-- Reminder status is shown with words ("Done," "Overdue," "Scheduled") as well as colour.
-- Chat replies and status messages are announced through live regions.
-- Visible focus outlines appear on every interactive element.
-- Buttons are at least 44 pixels tall, which suits touch screens.
-- Motion is reduced when the system asks for it.
-- The edit form uses the browser's native dialog element. Focus returns to the button that opened it when the dialog closes.
-
-## Responsive design
-
-The layout adapts at two breakpoints. Above 900 pixels wide, the assistant and reminder list appear side by side. Between 480 and 900 pixels, they stack. Below 480 pixels, padding and the orb shrink so the input and microphone stay usable. Long text wraps, so the page does not scroll sideways.
-
-## Installation and local run (Windows)
-
-**You need:** Node.js with npm (version 24.21.0 was used during development; a current LTS release should also work) and Chrome or Edge. Git is needed only for deployment.
-
-1. Open the `remember me` folder in VS Code with **File > Open Folder**.
-2. Open a terminal with **Terminal > New Terminal**.
-3. Type the following and press Enter:
-
-```
-   npm start
+```bash
+git clone https://github.com/snehaprajapat6677-prog/Rememberme-ai.git
 ```
 
-   The first run downloads the small `serve` tool from npm, so you need an internet connection. When the terminal says the server is running, the app is available at port 3000.
+### 2. Open the project directory
 
-4. Open **http://localhost:3000** in Chrome or Edge.
-5. To stop the server, press **Ctrl+C** in the terminal.
-
-## Troubleshooting
-
-- **"running scripts is disabled on this system"** appears in PowerShell: Windows is blocking `npm.ps1`. Either use **Command Prompt** instead, or run this once in PowerShell and then try again:
-
-```
-  Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+```bash
+cd Rememberme-ai
 ```
 
-- **The page does not open:** Check that the terminal still shows the server running. Use `http://localhost:3000`, not a file path.
-- **Syntax check:** To confirm that `script.js` has no syntax errors, run `node --check script.js` in the project folder. It prints nothing when the file is valid.
-- **Console errors:** Press **F12** and open the Console tab. There should be no red errors after the page loads.
+### 3. Start the development server
+
+```bash
+npm start
+```
+
+If the project uses the `serve` package as its development server, the first run may require an internet connection to download that package.
+
+### 4. Open the application
+
+Visit:
+
+```text
+http://localhost:3000
+```
+
+Use the port shown in your terminal if it differs.
+
+### 5. Stop the server
+
+Press `Ctrl+C` in the terminal.
+
+**Alternative:** If your setup supports it, you can use a local static server of your choice. Opening the HTML file directly may produce different results for features that require a secure context.
+
+---
+
+## Deployment
+
+RememberMe AI can be hosted as a static website.
+
+For Vercel deployment:
+
+1. Sign in to Vercel.
+2. Select **Add New → Project**.
+3. Import the GitHub repository `snehaprajapat6677-prog/Rememberme-ai`.
+4. Select **Other** as the framework preset if prompted.
+5. Leave the build command empty when no build step is required.
+6. Use the project root as the output directory.
+7. Deploy and wait for the deployment to finish.
+8. Open the generated HTTPS URL.
+9. Test the deployed version separately from the local version.
+
+After pushing changes to the connected GitHub branch, Vercel can redeploy automatically if the repository integration is configured.
+
+**Deployment note:** The existence of a GitHub repository does not itself confirm that a public deployment is live. Add the actual public URL here only after verifying it.
+
+**Live demo:** Not listed in this document.
+
+---
 
 ## Testing
 
-**Testing status:** This version has been checked by reading the code and tracing the main paths. The checks below have not yet been run in a browser. Run them before submitting, and record your results.
+The core reminder flows have been manually tested during development, according to the developer's reported results. This includes reminder management and conversational follow-up behavior.
 
-- [ ] **A.** The page loads with no red errors in the console.
-- [ ] **B.** Typed input is accepted, and the reply appears in the chat.
-- [ ] **C.** "Remind me in 30 minutes to take a break" creates a reminder that appears in the list.
-- [ ] **D.** The reminder is still there after refreshing the page.
-- [ ] **E.** "Remind me at 5 to call Mom" asks AM or PM. "Remind me yesterday at 5 PM" explains that the time has passed.
-- [ ] **F.** The Today filter shows only reminders due today and overdue reminders.
-- [ ] **G.** Marking a reminder done updates its status, the badge, and the statistics.
-- [ ] **H.** Deleting a reminder works from both the chat (after yes) and the card button (after confirming).
-- [ ] **I.** Moving a reminder with "Move ... to tomorrow at 5 PM" changes its time.
-- [ ] **J.** Voice input works in Chrome or Edge after you press the microphone button and allow access.
-- [ ] **K.** In a browser without speech recognition, the microphone button is disabled and explains why.
-- [ ] **L.** Spoken replies can be turned on and off.
-- [ ] **M.** The notification permission prompt appears only after you click "Turn on alerts."
-- [ ] **N.** The layout works at desktop, tablet, and phone widths, with no sideways scrolling.
-- [ ] **O.** Every control can be reached and operated with the Tab and Enter keys.
-- [ ] **P.** Corrupted saved data does not stop the app. Check that a backup is created.
-- [ ] **Q.** Every button responds, and no feature reports a missing function.
+A complete cross-browser, accessibility, and automated test suite has not been independently verified.
 
-## Deployment to Vercel
+### Recommended Final Checks
 
-Vercel hosts the site as static files. No serverless functions are needed.
+Before presenting the project, verify:
 
-1. **Create a GitHub repository.** Go to github.com, choose **New repository**, and name it `remember-me`. A public repository is the simplest choice for a hackathon submission.
-2. **Commit and push the code.** In the VS Code terminal, inside the project folder, run the following. The first two commands are needed only once on this computer.
+* [ ] The application loads without JavaScript errors.
+* [ ] A new reminder can be created.
+* [ ] Reminders remain available after refreshing the page.
+* [ ] List filters and summary statistics update correctly.
+* [ ] A reminder can be completed and reopened.
+* [ ] Editing and rescheduling update the intended reminder.
+* [ ] Deletion requires confirmation.
+* [ ] Answering "No" preserves the selected reminder.
+* [ ] Ambiguous reminder matches trigger a clarification.
+* [ ] AM/PM clarification selects the intended reminder.
+* [ ] Voice input works in a supported browser.
+* [ ] Spoken replies can be enabled and disabled.
+* [ ] Notification permission is requested only after the user opts in.
+* [ ] In-page alerts appear while the page is running.
+* [ ] The layout works on desktop and mobile.
+* [ ] Keyboard navigation reaches the main controls.
+* [ ] No API keys, passwords, or other secrets are committed to the public repository.
 
-```
-   git config --global user.name "Your Name"
-   git config --global user.email "you@example.com"
-   git init
-   git add .
-   git commit -m "Initial RememberMe AI submission"
-   git branch -M main
-   git remote add origin https://github.com/YOUR-USERNAME/remember-me.git
-   git push -u origin main
-```
+Mark each item complete only after running the corresponding test.
 
-   Replace snehaprajapat6677-prog with your GitHub username. When you push, Git may open a window asking you to sign in to GitHub. GitHub no longer accepts account passwords for Git, so use the sign-in window or a personal access token.
+---
 
-3. **Import into Vercel.** Sign in at vercel.com and choose **Add New > Project**. Select **Import** next to your `remember-me` repository.
-4. **Set the build options.** For **Framework Preset**, choose **Other**. Leave **Build Command** empty. Leave **Output Directory** as its default, which serves the project root.
-5. **Deploy.** Select **Deploy** and wait for the process to finish.
-6. **Test the public URL.** Open the address Vercel gives you, which uses HTTPS. Repeat a few checks from the list above. Voice input will work on this HTTPS address.
-7. **Future updates.** After changing the code, run `git add .`, `git commit -m "Describe the change"`, and `git push`. Vercel redeploys automatically.
+## Privacy
 
-The `.vercel/` folder is listed in `.gitignore`, so Vercel's local settings are not uploaded to GitHub.
+RememberMe AI is designed to store reminder content locally rather than sending it to an application backend.
 
-## Current limitations
+* There is no application account system.
+* There is no cloud synchronization of reminders.
+* Reminder content is stored in localStorage.
+* The application does not require an external AI API.
+* Browser speech services may process voice audio separately from the application.
+* Browser speech recognition behavior depends on the browser and its configuration.
+* The hosting provider may collect standard website request logs.
 
-- **Not an AI model.** The parser understands a fixed set of English phrasings. Unusual wording gets a "didn't understand" reply.
-- **One browser at a time.** Reminders stay in the browser on one device. There is no sync and no backup. Clearing site data or using a private window removes them.
-- **Alerts need an open page.** Nothing fires when the tab or browser is closed. Many phones will not show page-level notifications.
-- **No recurring reminders.** Each reminder happens once.
-- **Local time zone only.** Reminders use the time zone of the device. They do not adjust if you travel to another time zone.
-- **Voice depends on the browser.** Recognition accuracy varies, and some browsers do not support it. Chrome and Edge send audio to speech services over the internet.
-- **Not encrypted.** Browser storage is not encrypted.
-- **Limited testing.** This version has not been run in every browser or on every device.
+Users should avoid entering sensitive personal, financial, or medical information.
 
-## Roadmap
+---
 
-- Background reminders using a service worker and push notifications, which would need a server-side scheduler.
-- Accounts with encrypted sync across devices.
-- Recurring reminders, such as every weekday at 8 AM.
-- Automated unit tests for the parser, which is already kept separate from the interface for this purpose.
-- A genuine language model connected through a clearly labelled adapter, with the rule-based parser kept as a fallback.
-- An official Alexa integration, but only if Amazon's documented routes and permissions allow it.
-- Support for more languages.
-- Import and export of reminders as a file.
-- Testing with screen reader users and older adults.
+## Current Limitations
+
+RememberMe AI is a prototype and has several limitations:
+
+1. **Rule-based understanding:** It supports defined English command patterns rather than unrestricted natural-language conversation.
+2. **No generative AI:** It does not currently use an external language model.
+3. **No official Alexa integration:** It does not connect to Alexa devices, Alexa accounts, or official Alexa APIs.
+4. **Local-only data:** Reminders do not synchronize between browsers or devices.
+5. **Foreground-dependent alerts:** Reminders are checked while the page is running. Alerts are not guaranteed when the page is closed.
+6. **No recurring reminders:** The current reminder model is intended for individual scheduled tasks.
+7. **Browser-dependent voice support:** Speech recognition and synthesis vary by browser, operating system, and permissions.
+8. **No encrypted storage:** Local reminder data is not encrypted by the application.
+9. **Limited automated testing:** Broader automated and cross-browser testing remains future work.
+
+These limitations are documented to distinguish implemented capabilities from potential future improvements.
+
+---
+
+## Future Improvements
+
+Potential future improvements include:
+
+* More flexible natural-language understanding.
+* Multilingual commands and responses.
+* Recurring reminders.
+* More reliable background notifications.
+* Import and export of reminder data.
+* Automated tests for date parsing and command interpretation.
+* Optional account-based synchronization.
+* Additional accessibility testing with users.
+* An official Alexa integration, if supported by the relevant Amazon APIs, permissions, and hackathon requirements.
+
+These are future possibilities and are not represented as currently implemented features.
+
+---
+
+## Hackathon Context
+
+RememberMe AI was developed for the **Amazon Developer Hackathon 2026**, targeting the Alexa+ track through the simulated conversational web-experience approach.
+
+The project explores how a conversational interface can simplify everyday reminder management through text, optional voice interaction, and follow-up clarification.
+
+It is an independent prototype, not an official Alexa product.
+
+---
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 Copyright (c) 2026 Sneha Prajapat
 
-## Hackathon statement
+---
 
-RememberMe AI was built for the Amazon Developer Hackathon 2026, Alexa+ track. It simulates a conversational Alexa+-style experience in a web page. It is not an official Amazon or Alexa product, and it does not use any Amazon or Alexa service.
+## Author
+
+**Sneha Prajapat**
+
+GitHub: [@snehaprajapat6677-prog](https://github.com/snehaprajapat6677-prog)
+
+Project repository: [Rememberme-ai](https://github.com/snehaprajapat6677-prog/Rememberme-ai)
+
