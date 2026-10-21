@@ -1,0 +1,8 @@
+node_modules/
+.vercel/
+.vscode/
+.env
+.DS_Store
+Thumbs.db
+npm-debug.log*
+*.log

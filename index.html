@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RememberMe AI is a calm, conversational memory assistant. Your reminders stay in your browser." />
+  <title>RememberMe AI · Your Personal Memory Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="brand">
+      <svg class="brand__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <circle cx="24" cy="24" r="17" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="84 23" />
+        <circle cx="24" cy="24" r="5.5" fill="currentColor" />
+      </svg>
+      <div>
+        <p class="brand__name">RememberMe AI</p>
+        <p class="brand__tagline">Remember less. Live more.</p>
+      </div>
+    </div>
+    <div class="site-header__actions">
+      <time class="date-indicator" id="current-date"></time>
+      <button type="button" class="btn btn--ghost" id="speech-toggle" aria-pressed="false">Spoken replies: off</button>
+      <button type="button" class="btn btn--ghost" id="alerts-toggle" aria-pressed="false">Turn on alerts</button>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <section class="welcome" aria-labelledby="greeting">
+      <h1 id="greeting">Hello.</h1>
+      <p class="welcome__lead">Let's make room for what matters.</p>
+      <p class="welcome__sub">Tell me what you need to remember. I'll help you keep track.</p>
+    </section>
+
+    <section class="due-banner" id="due-banner" aria-label="Reminders due now" hidden>
+      <p id="due-text" role="status"></p>
+      <div class="due-banner__actions">
+        <button type="button" class="btn btn--ghost btn--small" id="due-view">Show today</button>
+        <button type="button" class="btn btn--ghost btn--small" id="due-dismiss">Dismiss</button>
+      </div>
+    </section>
+
+    <p class="notice" id="storage-warning" role="status" hidden>
+      Your browser is not saving data, so reminders will last only until you reload this page.
+    </p>
+
+    <div class="layout">
+      <section class="panel assistant" aria-labelledby="assistant-title">
+        <div class="assistant__header">
+          <h2 id="assistant-title">RememberMe assistant</h2>
+          <button type="button" class="btn btn--text" id="clear-chat">Clear conversation</button>
+        </div>
+
+        <div class="orb" id="orb" data-state="idle" aria-hidden="true">
+          <span class="orb__ring orb__ring--1"></span>
+          <span class="orb__ring orb__ring--2"></span>
+          <span class="orb__core">
+            <svg class="orb__mark" viewBox="0 0 48 48" focusable="false">
+              <circle class="mark-ring" cx="24" cy="24" r="17" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="84 23" />
+              <circle cx="24" cy="24" r="5.5" fill="currentColor" />
+            </svg>
+          </span>
+          <span class="orb__wave"><i></i><i></i><i></i><i></i><i></i></span>
+        </div>
+        <p class="assistant__status" id="assistant-status" role="status">Ready when you are.</p>
+
+        <div class="chat-log" id="chat-log" role="log" aria-live="polite" aria-label="Conversation"></div>
+
+        <form class="composer" id="chat-form" autocomplete="off">
+          <label class="visually-hidden" for="chat-input">Type a reminder or question</label>
+          <input id="chat-input" name="message" type="text" maxlength="300"
+                 placeholder="Try: Remind me tomorrow at 10 AM to wash clothes" />
+          <button type="button" class="btn btn--icon" id="mic-button" aria-pressed="false" aria-label="Start voice input">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+              <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z" />
+              <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 11a6 6 0 0 0 12 0M12 17v4" />
+            </svg>
+          </button>
+          <button type="submit" class="btn btn--primary" id="send-button">Send</button>
+        </form>
+        <p class="hint">Voice works best in Chrome or Edge. Nothing is recorded unless you press the microphone button.</p>
+
+        <div class="examples">
+          <p class="examples__label" id="examples-label">Try saying</p>
+          <div class="examples__list" id="examples" role="group" aria-labelledby="examples-label">
+            <button type="button" class="example" data-example="Remind me tomorrow at 10 AM to wash clothes.">Remind me tomorrow at 10 AM to wash clothes.</button>
+            <button type="button" class="example" data-example="What do I need to do today?">What do I need to do today?</button>
+            <button type="button" class="example" data-example="Remind me in 30 minutes to take a break.">Remind me in 30 minutes to take a break.</button>
+            <button type="button" class="example" data-example="What have I completed?">What have I completed?</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="workspace">
+        <section aria-labelledby="overview-title">
+          <h2 class="visually-hidden" id="overview-title">Reminder overview</h2>
+          <dl class="stats">
+            <div class="stat"><dt>Active</dt><dd id="stat-active">0</dd></div>
+            <div class="stat"><dt>Due today</dt><dd id="stat-today">0</dd></div>
+            <div class="stat"><dt>Completed</dt><dd id="stat-completed">0</dd></div>
+          </dl>
+        </section>
+
+        <section class="panel" aria-labelledby="list-title">
+          <div class="list-header">
+            <h2 id="list-title">Your reminders</h2>
+            <div class="filters" role="group" aria-label="Filter reminders">
+              <button type="button" class="filter" data-filter="all" aria-pressed="true">All</button>
+              <button type="button" class="filter" data-filter="today" aria-pressed="false">Today</button>
+              <button type="button" class="filter" data-filter="upcoming" aria-pressed="false">Upcoming</button>
+              <button type="button" class="filter" data-filter="completed" aria-pressed="false">Completed</button>
+            </div>
+          </div>
+          <ul class="reminder-list" id="reminder-list"></ul>
+          <p class="empty-state" id="empty-state" hidden></p>
+        </section>
+
+        <section class="panel alerts" aria-labelledby="alerts-title">
+          <h2 id="alerts-title">Due-time alerts</h2>
+          <p class="notice-text" id="notify-status">Checking alert status…</p>
+          <p class="hint">Alerts appear only while this page is open. Closed browsers cannot show them in this version.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <dialog id="edit-dialog" class="dialog" aria-labelledby="edit-heading">
+    <form id="edit-form" class="edit-form" novalidate>
+      <h2 id="edit-heading">Edit reminder</h2>
+      <div>
+        <label for="edit-title">What should I remind you about?</label>
+        <input id="edit-title" name="title" type="text" maxlength="120" required />
+      </div>
+      <div class="edit-form__row">
+        <div>
+          <label for="edit-date">Date</label>
+          <input id="edit-date" name="date" type="date" required />
+        </div>
+        <div>
+          <label for="edit-time">Time</label>
+          <input id="edit-time" name="time" type="time" required />
+        </div>
+      </div>
+      <p class="form-error" id="edit-error" role="alert"></p>
+      <div class="edit-form__actions">
+        <button type="button" class="btn btn--ghost" id="edit-cancel">Cancel</button>
+        <button type="submit" class="btn btn--primary">Save changes</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <footer class="site-footer">
+    <p>Reminders are stored in this browser only, not encrypted, and never sent to a server. Avoid entering sensitive information.</p>
+    <p>RememberMe AI simulates a conversational Alexa+-style experience. It is not an official Amazon or Alexa product and is not a medical or safety device.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
