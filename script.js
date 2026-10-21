@@ -1,17 +1,4 @@
-/* ==========================================================================
-   RememberMe AI · script.js
-   Part 2 of 3: the first half of this file.
-   Contents: constants, date helpers, storage with recovery, reminder tools,
-   date and time parsing, and the intent parser.
-   Part 3 continues this same file with the dispatcher, interface, voice,
-   notifications, and start-up code.
 
-   Design rule for this half: nothing here touches the page. Tools change the
-   data and return honest messages. The parser only decides what the user
-   meant. Part 3 decides how results look.
-   ========================================================================== */
-
-"use strict";
 
 /* ==========================================================================
    1. CONSTANTS
