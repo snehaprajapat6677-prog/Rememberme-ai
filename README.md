@@ -295,7 +295,7 @@ Vercel hosts the site as static files. No serverless functions are needed.
    git push -u origin main
 ```
 
-   Replace `YOUR-USERNAME` with your GitHub username. When you push, Git may open a window asking you to sign in to GitHub. GitHub no longer accepts account passwords for Git, so use the sign-in window or a personal access token.
+   Replace snehaprajapat6677-prog with your GitHub username. When you push, Git may open a window asking you to sign in to GitHub. GitHub no longer accepts account passwords for Git, so use the sign-in window or a personal access token.
 
 3. **Import into Vercel.** Sign in at vercel.com and choose **Add New > Project**. Select **Import** next to your `remember-me` repository.
 4. **Set the build options.** For **Framework Preset**, choose **Other**. Leave **Build Command** empty. Leave **Output Directory** as its default, which serves the project root.
@@ -332,7 +332,7 @@ The `.vercel/` folder is listed in `.gitignore`, so Vercel's local settings are 
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE).
 
-Copyright (c) 2026 [YOUR NAME]
+Copyright (c) 2026 Sneha Prajapat
 
 ## Hackathon statement
 
